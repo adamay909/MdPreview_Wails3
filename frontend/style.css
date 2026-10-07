@@ -1,0 +1,106 @@
+:root {
+  color-scheme: light dark;
+  --bg: light-dark(white, black);
+  --fg: light-dark(black, white);
+  --muted: light-dark(#6e7781, #8b949e);
+  --border: light-dark(#d0d7de, #30363d);
+  --code-bg: light-dark(#f6f8fa, #161b22);
+  --link: light-dark(#0969da, #58a6ff);
+  --bar: light-dark(#f6f8fa, #161b22);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Noto Sans", "Helvetica", "Arial", sans-serif;
+  font-size: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#scroll {
+  flex: 1;
+  overflow: auto;
+}
+
+#status {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: auto;
+  padding: 4px 12px;
+  font-size: 16px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  min-height: 26px;
+}
+
+#content {
+  font-family:
+    "Merriweather", "Yu Mincho", "Hiragino Mincho ProN", "IPAexMincho",
+    "Noto Serif JP", serif;
+  line-height: 1.5em;
+  font-size: 120%;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 24px 32px 64px;
+}
+
+#content h1,
+#content h2 {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.3em;
+}
+#content a {
+  color: var(--link);
+}
+#content code {
+  background: var(--code-bg);
+  padding: 0.15em 0.35em;
+  border-radius: 4px;
+  font:
+    85% "Noto Mono",
+    monospace;
+}
+#content pre {
+  background: var(--code-bg);
+  padding: 14px;
+  border-radius: 6px;
+  overflow: auto;
+}
+#content pre code {
+  background: none;
+  padding: 0;
+  font-size: 85%;
+}
+#content blockquote {
+  margin: 0;
+  padding: 0 1em;
+  color: var(--muted);
+  border-left: 4px solid var(--border);
+}
+#content table {
+  border-collapse: collapse;
+}
+#content th,
+#content td {
+  border: 1px solid var(--border);
+  padding: 6px 13px;
+}
+#content img {
+  max-width: 100%;
+}
+#content hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+}
