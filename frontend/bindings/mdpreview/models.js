@@ -64,12 +64,12 @@ export class metadata {
      * @param {Partial<metadata>} [$$source = {}] - The source object to create the metadata.
      */
     constructor($$source = {}) {
-        if (!("Name" in $$source)) {
+        if (!("Target" in $$source)) {
             /**
              * @member
              * @type {string}
              */
-            this["Name"] = "";
+            this["Target"] = "";
         }
         if (!("Path" in $$source)) {
             /**

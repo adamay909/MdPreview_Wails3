@@ -16,7 +16,7 @@ Events.On("newmetadata", (e) => updateMetadata(e.data));
 Events.On("themechange", (e) => updateTheme(e.data));
 
 function updateContent(data) {
-  if (data.Name != name) {
+  if (data.Target != name) {
     return;
   }
   contentElem.innerHTML = data.Html;
@@ -24,7 +24,7 @@ function updateContent(data) {
 }
 
 function updateMetadata(m) {
-  if (m.Name != name) {
+  if (m.Target != name) {
     return;
   }
   pathElem.textContent = m.ShortPath;

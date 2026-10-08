@@ -105,13 +105,16 @@ func addDocWindow(app *application.App, svc *mdpreviewer, d *documentWindow, opt
 		opts.Y = curY + 50
 		fmt.Println("new pos", opts.X, opts.Y)
 	}
-	d.window = app.Window.NewWithOptions(opts)
+	w := app.Window.NewWithOptions(opts)
+	d.window = w
 	name := d.window.Name()
 	svc.windows[name] = d.window
 	svc.docs[name] = d
-	d.window.OnWindowEvent(events.Common.WindowClosing, func(event *application.WindowEvent) {
+	w.OnWindowEvent(events.Common.WindowClosing, func(event *application.WindowEvent) {
 		delete(svc.windows, name)
 		delete(svc.docs, name)
+		d.window = nil
+		d = nil
 	})
 }
 
@@ -183,6 +186,13 @@ func setupMenus(app *application.App, svc *mdpreviewer) {
 	app.Menu.Set(menu)
 }
 
+type metadata struct {
+	Target    string
+	Path      string
+	WordCount int
+	ShortPath string
+}
+
 func init() {
 	application.RegisterEvent[string]("newplaintext")
 	application.RegisterEvent[metadata]("newmetadata")
@@ -194,7 +204,7 @@ func setupEventReceivers(app *application.App, svc *mdpreviewer) {
 		d := svc.docs[e.Sender]
 		d.plainText = e.Data.(string)
 		w, _ := app.Window.GetByName(e.Sender)
-		w.EmitEvent("newmetadata", metadata{Name: e.Sender, Path: d.path, ShortPath: filepath.Base(d.path), WordCount: len(strings.Fields(d.plainText))})
+		w.EmitEvent("newmetadata", metadata{Target: e.Sender, Path: d.path, ShortPath: filepath.Base(d.path), WordCount: len(strings.Fields(d.plainText))})
 	})
 }
 

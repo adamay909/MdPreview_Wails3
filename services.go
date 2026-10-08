@@ -13,13 +13,6 @@ import (
 	"golang.design/x/clipboard"
 )
 
-type metadata struct {
-	Name      string
-	Path      string
-	WordCount int
-	ShortPath string
-}
-
 func newmdpreviewer() *mdpreviewer {
 	m := new(mdpreviewer)
 
@@ -53,7 +46,6 @@ func (m *mdpreviewer) browse(newwindow bool) error {
 	if err := d.loadFile(path); err != nil {
 		return err
 	}
-
 	return nil
 }
 
