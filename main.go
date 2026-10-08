@@ -2,7 +2,6 @@ package main
 
 import (
 	"embed"
-	"fmt"
 	"path/filepath"
 	"runtime"
 	"strings"
@@ -99,11 +98,9 @@ func addDocWindow(app *application.App, svc *mdpreviewer, d *documentWindow, opt
 	if len(svc.docs) > 0 {
 		cw := app.Window.Current()
 		curX, curY := cw.Position()
-		fmt.Println("old pos", curX, curY)
 		opts.InitialPosition = application.WindowXY
 		opts.X = curX + 50
 		opts.Y = curY + 50
-		fmt.Println("new pos", opts.X, opts.Y)
 	}
 	w := app.Window.NewWithOptions(opts)
 	d.window = w

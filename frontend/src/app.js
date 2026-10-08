@@ -33,8 +33,8 @@ function updateMetadata(m) {
 }
 
 function updateTheme(t) {
-  if (t.Target) {
-    if (t.Target != name) {
+  if (t.Target !== "") {
+    if (t.Target !== name) {
       return;
     }
   }
@@ -57,28 +57,6 @@ function updateTheme(t) {
         '"Roboto", "Yu Gothic Medium", "Yu Gothic", YuGothic, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif',
       );
     }
-  }
-  if (t.Size) {
-    console.log("font size");
-    const currentSize = parseInt(contentElem.dataset.size);
-    var newSize;
-    if (t.Size === "normal") {
-      newSize = 120;
-    }
-    if (t.Size === "larger") {
-      newSize = currentSize + 10;
-      if (newSize > 200) {
-        newSize = 200;
-      }
-    }
-    if (t.Size === "smaller") {
-      newSize = currentSize - 5;
-      if (newSize < 50) {
-        newSize = 50;
-      }
-    }
-    contentElem.dataset.size = String(newSize);
-    contentElem.style.setProperty("font-size", contentElem.dataset.size + "%");
   }
 }
 // ---- links: prevent navigating to external page
