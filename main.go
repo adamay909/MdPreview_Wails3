@@ -176,6 +176,14 @@ func setupMenus(app *application.App, svc *mdpreviewer) {
 	})
 
 	viewMenu.AddSeparator()
+	langMenu := viewMenu.AddSubmenu("Language")
+	langMenu.Add("English").OnClick(func(ctx *application.Context) {
+		svc.setLang("en")
+	})
+	langMenu.Add("日本語").OnClick(func(ctx *application.Context) {
+		svc.setLang("ja")
+	})
+
 	viewMenu.AddRole(application.ZoomIn)
 	viewMenu.AddRole(application.ZoomOut)
 	viewMenu.AddRole(application.ResetZoom)

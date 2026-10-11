@@ -43,6 +43,13 @@ export class cssTheme {
              */
             this["Size"] = "";
         }
+        if (!("Lang" in $$source)) {
+            /**
+             * @member
+             * @type {string}
+             */
+            this["Lang"] = "";
+        }
 
         Object.assign(this, $$source);
     }

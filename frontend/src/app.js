@@ -58,7 +58,14 @@ function updateTheme(t) {
       );
     }
   }
+ if (t.Lang) {
+  console.log("setting Lang", t.Lang)
+  const htmlElem = document.documentElement
+ htmlElem.setAttribute("lang", t.Lang)
+  contentElem.style.setProperty("line-break", "strict")
+ }
 }
+
 // ---- links: prevent navigating to external page
 contentElem.addEventListener("click", (e) => {
   const a = e.target.closest("a");

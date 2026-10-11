@@ -81,10 +81,10 @@ func (d *documentWindow) reload() error {
 	if err != nil {
 		return err
 	}
-	d.markdown = string(data)
+	d.markdown = removeWraps(string(data))
 	p := parser.NewWithExtensions(mdExtensions)
 	r := html.NewRenderer(html.RendererOptions{Flags: htmlFlags})
-	d.html = string(bluemonday.UGCPolicy().SanitizeBytes(markdown.ToHTML(markdown.NormalizeNewlines(data), p, r)))
+	d.html = string(bluemonday.UGCPolicy().SanitizeBytes(markdown.ToHTML(markdown.NormalizeNewlines([]byte(d.markdown)), p, r)))
 	//notify frontend of update
 	d.window.EmitEvent("updatefile", update{Html: d.html, Target: d.window.Name()})
 	return nil

@@ -123,6 +123,7 @@ type cssTheme struct {
 	Color  string
 	Font   string
 	Size   string
+	Lang   string
 }
 
 func init() {
@@ -138,6 +139,12 @@ func (m *mdpreviewer) setFont(fontfamily string) {
 	app := application.Get()
 	target := app.Window.Current().Name()
 	app.Event.Emit("themechange", cssTheme{Target: target, Font: fontfamily})
+}
+
+func (m *mdpreviewer) setLang(lang string) {
+	app := application.Get()
+	target := app.Window.Current().Name()
+	app.Event.Emit("themechange", cssTheme{Target: target, Lang: lang})
 }
 
 func (m *mdpreviewer) setZoom(direction string) {
