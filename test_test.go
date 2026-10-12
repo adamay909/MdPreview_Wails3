@@ -1,26 +1,36 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 )
 
 func TestCJK(t *testing.T) {
-
-	s := "あイ兎、。"
-
-	for _, c := range s {
-		fmt.Println(c, isCJK(c))
+	tests := []struct {
+		char     rune
+		response bool
+	}{
+		{'あ', true},
+		{'イ', true},
+		{'兎', true},
+		{'、', true},
+		{'。', true},
+		{'Ａ', true},
+		{'Ｂ', true},
+		{'Ｃ', true},
+		{'１', true},
+		{'２', true},
+		{'３', true},
+		{'a', false},
+		{'B', false},
+		{'c', false},
+		{'1', false},
+		{'2', false},
+		{'3', false},
+		{',', false},
 	}
-
-}
-
-func TestRemoveWraps(t *testing.T) {
-	s := `わたしは
-猫ではない。`
-
-	fmt.Println(s)
-
-	fmt.Println()
-	fmt.Println(removeWraps(s))
+	for i := range tests {
+		if got := isCJK(tests[i].char); got != tests[i].response {
+			t.Errorf("want isCJK(%q)=%v, got %v", tests[i].char, tests[i].response, got)
+		}
+	}
 }

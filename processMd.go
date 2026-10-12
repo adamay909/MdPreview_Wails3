@@ -7,8 +7,8 @@ import (
 )
 
 // remove line breaks (\n) between CJK multibyte chars
-// to prevent Safari and the like from inserting spurious
-// spaces
+// to prevent Webkit from inserting spurious
+// spaces if lines are hardwrapped.
 func removeWraps(in string) string {
 	b := new(strings.Builder)
 
@@ -46,6 +46,12 @@ func isCJK(r rune) bool {
 	case unicode.Is(unicode.Hiragana, r):
 		return true
 	case unicode.Is(unicode.Katakana, r):
+		return true
+	case (0x2FFF < r) && (r < 0x3040): //日本語句読点
+		return true
+	case (0xFF00 < r) && (r < 0xFF5B): //全角英数字
+		return true
+	case (0xFF60 < r) && (r < 0xFFA0): //半角カナ
 		return true
 	default:
 		return false
