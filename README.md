@@ -9,7 +9,7 @@ with Wails3.
 documents while editing in Vim. 
 
 - You can open multiple files at once in separate windows. You can even open the
-  same window multiple times.
+  same document multiple times.
 - Changes in the markdown file will be reflected as soon as they are saved to
   disk.
 - You can change the font between Serif and Sans Serif from the View menu. 
